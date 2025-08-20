@@ -1,0 +1,32 @@
+{% extends 'demoapp/base.html' %}
+{% block title %}View Users{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-3">User Management</h2>
+    <table class="table table-striped mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.get_role_display }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No users found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

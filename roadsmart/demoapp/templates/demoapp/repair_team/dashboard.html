@@ -1,0 +1,20 @@
+
+{% extends 'demoapp/base.html' %}
+{% block title %}Repair Team Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-3">Repair Team Dashboard</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Assigned Tasks</div>
+                <div class="card-body">
+                    <h5 class="card-title">View Assigned Repairs</h5>
+                    <a href="{% url 'demoapp:repair_tasks' %}" class="btn btn-light">Check Tasks</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

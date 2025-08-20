@@ -1,0 +1,69 @@
+{% extends 'demoapp/base.html' %}
+{% load static %}
+{% block title %}Home - RoadSmart{% endblock %}
+
+{% block content %}
+<div class="welcome-banner">
+    <h1>Welcome to RoadSmart</h1>
+    <p>Efficiently report and manage road repairs with our smart system</p>
+    <a href="#join-section" class="btn btn-primary">Get Started</a>
+</div>
+
+
+<!-- About Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="{% static 'images/image_1.jpeg' %}" class="img-fluid rounded" alt="Road Repair">
+            </div>
+            <div class="col-md-6">
+                <h2>About RoadSmart</h2>
+                <p>RoadSmart is a modern road maintenance system that allows citizens to report issues, municipal teams to manage repairs, and repair teams to work efficiently.</p>
+                <p>We aim to make road maintenance faster and more transparent.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container text-center">
+        <h2 class="mb-4">Why Choose RoadSmart?</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="fas fa-users fa-3x"></i>
+                    <h4>For Citizens</h4>
+                    <p>Quickly report road damages using our easy-to-use platform.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="fas fa-city fa-3x"></i>
+                    <h4>For Municipal Teams</h4>
+                    <p>Track and assign repair tasks efficiently.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="fas fa-tools fa-3x"></i>
+                    <h4>For Repair Teams</h4>
+                    <p>Receive assignments and update progress on repairs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section text-center">
+    <div id="join-section">
+        <h2>Join Us Now</h2>
+        <p>Sign up today and start managing road repairs efficiently.</p>
+        <a href="{% url 'demoapp:register' %}" class="btn btn-success">Join Now</a>
+    </div>    
+</section>
+
+{% endblock %}

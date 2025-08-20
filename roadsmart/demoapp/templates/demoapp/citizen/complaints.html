@@ -1,0 +1,40 @@
+{% extends 'demoapp/base.html' %}
+
+{% block title %}My Complaints{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>My Complaints</h2>
+    
+    {% if complaints %}
+    <table class="table">
+        <thead> 
+            <tr>
+                <th>ID</th>
+                <th>Issue</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+            <tr>
+                <td>{{ complaint.id }}</td>
+                <td>{{ complaint.issue }}</td>
+                <td>
+                    <span class="badge 
+                        {% if complaint.status == 'Pending' %}bg-warning
+                        {% else %}bg-success{% endif %}">
+                        {{ complaint.status }}
+                    </span>
+                </td>
+                <td>{{ complaint.created_at|date:"M d, Y" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">No complaints found.</div>
+    {% endif %}
+</div>
+{% endblock %}

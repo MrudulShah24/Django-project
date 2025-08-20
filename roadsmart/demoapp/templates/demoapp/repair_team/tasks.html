@@ -1,0 +1,48 @@
+{% extends 'demoapp/base.html' %}
+{% block title %}Repair Tasks{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-3">Assigned Repair Tasks</h2>
+    
+    <table class="table table-hover mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Task Details</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.task_details }}</td>
+                <td>
+                    <span class="badge 
+                        {% if task.report.priority == 'Critical' %}bg-danger
+                        {% elif task.report.priority == 'High' %}bg-warning
+                        {% elif task.report.priority == 'Medium' %}bg-primary
+                        {% else %}bg-secondary{% endif %}">
+                        {{ task.report.priority }}
+                    </span>
+                </td>
+                <td>{{ task.status }}</td>
+                <td>
+                    <a href="{% url 'demoapp:task_detail' task.id %}" class="btn btn-sm btn-info">View</a>
+                    {% if task.status != 'Completed' %}
+                    <a href="{% url 'demoapp:complete_task' task.id %}" class="btn btn-sm btn-success">Complete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No tasks assigned.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

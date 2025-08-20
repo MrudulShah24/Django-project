@@ -1,0 +1,25 @@
+{% extends 'demoapp/base.html' %}
+{% load static %}
+{% block title %}Contact Us - RoadSmart{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>Have any questions or feedback? Feel free to reach out!</p>
+        <form method="POST" class="contact-form">
+            {% csrf_token %}
+            <label for="name">Your Name:</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="message">Your Message:</label>
+            <textarea name="message" id="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

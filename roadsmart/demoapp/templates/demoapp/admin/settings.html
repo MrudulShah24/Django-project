@@ -1,0 +1,16 @@
+{% extends 'demoapp/base.html' %}
+{% block title %}Admin Settings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-3">Admin Settings</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Change Site Title:</label>
+            <input type="text" class="form-control" name="site_title" placeholder="Enter new site title">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Settings</button>
+    </form>
+</div>
+{% endblock %}

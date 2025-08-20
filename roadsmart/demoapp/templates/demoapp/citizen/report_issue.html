@@ -1,0 +1,29 @@
+{% extends 'demoapp/base.html' %}
+{% block title %}Report Issue{% endblock %}
+
+{% block content %}
+<h2>Report a Road Issue</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Title:</label>
+    <input type="text" name="title" required><br>
+
+    <label>Description:</label>
+    <textarea name="description" required></textarea><br>
+
+    <label>Location:</label>
+    <input type="text" name="location" required><br>
+
+    <label>Upload Image:</label>
+    <input type="file" name="image"><br>
+
+    <button type="submit">Submit</button>
+</form>
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}

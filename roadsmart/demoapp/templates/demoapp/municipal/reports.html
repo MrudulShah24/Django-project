@@ -1,0 +1,58 @@
+{% extends 'demoapp/base.html' %}
+{% block title %}Municipal Reports{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-3">Municipal Reports</h2>
+    
+    <!-- Priority Filter -->
+    <div class="mb-3">
+        <label>Filter by Priority:</label>
+        <div class="btn-group">
+            <a href="?priority=Critical" class="btn btn-danger">Critical</a>
+            <a href="?priority=High" class="btn btn-warning">High</a>
+            <a href="?priority=Medium" class="btn btn-primary">Medium</a>
+            <a href="?priority=Low" class="btn btn-secondary">Low</a>
+            <a href="?" class="btn btn-light">All</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report.id }}</td>
+                <td>{{ report.title }}</td>
+                <td>
+                    <span class="badge 
+                        {% if report.priority == 'Critical' %}bg-danger
+                        {% elif report.priority == 'High' %}bg-warning
+                        {% elif report.priority == 'Medium' %}bg-primary
+                        {% else %}bg-secondary{% endif %}">
+                        {{ report.priority }}
+                    </span>
+                </td>
+                <td>{{ report.status }}</td>
+                <td>
+                    <a href="{% url 'demoapp:report_detail' report.id %}" class="btn btn-sm btn-info">View</a>
+                    <a href="{% url 'demoapp:assign_task' report.id %}" class="btn btn-sm btn-success">Assign</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No reports available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

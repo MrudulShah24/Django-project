@@ -1,0 +1,14 @@
+{% extends 'demoapp/base.html' %}
+{% load static %}
+{% block title %}About Us - RoadSmart{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <div class="container">
+        <h2>About RoadSmart</h2>
+        <p>RoadSmart is a modern road maintenance system designed to make road repairs more efficient and transparent.</p>
+        <p>We allow citizens to report issues, municipal teams to manage repairs, and repair teams to work seamlessly.</p>
+        <img src="{% static 'images/image_2.jpeg' %}" height="400" alt="About RoadSmart">
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'demoapp/base.html' %}
+{% block title %}Assign Task{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Assign Task: {{ report.title }}</h2>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <p><strong>Priority:</strong> 
+                <span class="badge 
+                    {% if report.priority == 'Critical' %}bg-danger
+                    {% elif report.priority == 'High' %}bg-warning
+                    {% elif report.priority == 'Medium' %}bg-primary
+                    {% else %}bg-secondary{% endif %}">
+                    {{ report.priority }}
+                </span>
+            </p>
+            <p><strong>Description:</strong> {{ report.description }}</p>
+            <p><strong>Location:</strong> {{ report.location }}</p>
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Select Repair Team:</label>
+            <select name="repair_team" class="form-select" required>
+                {% for team in repair_teams %}
+                <option value="{{ team.id }}">{{ team.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Assign Task</button>
+    </form>
+</div>
+{% endblock %}

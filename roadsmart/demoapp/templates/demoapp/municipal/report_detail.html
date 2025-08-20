@@ -1,0 +1,23 @@
+{% extends 'demoapp/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>{{ report.title }}</h2>
+  
+  <!-- Status Timeline -->
+  <div class="card mt-3">
+    <div class="card-header">
+      <h5>Status History</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for update in report.status_updates.all %}
+      <li class="list-group-item">
+        <strong>{{ update.to_status }}</strong> 
+        <small class="text-muted">{{ update.created_at|date:"M d, Y H:i" }}</small>
+        <p>{{ update.notes }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
